@@ -68,7 +68,12 @@ class WebApiExtension implements ExtensionInterface
 
     private function loadClient(ContainerBuilder $container, $config)
     {
-        $config += ['defaults' => ['verify' => false]];
+        $config += [
+            'defaults' => [
+                'cookies' => true,
+                'verify' => false
+            ],
+        ];
         $definition = new Definition('GuzzleHttp\Client', array($config));
         $container->setDefinition(self::CLIENT_ID, $definition);
     }
